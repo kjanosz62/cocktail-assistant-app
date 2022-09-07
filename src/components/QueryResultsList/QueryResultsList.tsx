@@ -2,6 +2,7 @@ import { html } from "lit-html";
 import { component } from 'haunted';
 
 import '../QueryResultCard/QueryResultCard';
+import { Variables } from "../../enums/Variables.enum";
 
 interface DrinksProps {
   drinks: any;
@@ -42,7 +43,7 @@ export function QueryResultsList({drinks}) {
       text-align: center;
       width: 280px;
       padding: 10px 180px;
-      box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+      box-shadow: ${Variables.shoppingListContainerShadowColor} 0px 5px 15px;
       background: #FFF;
       border-radius: 8px;
       margin: 0;
@@ -54,16 +55,12 @@ export function QueryResultsList({drinks}) {
       width: 100%;
       margin-bottom: 40px;
       text-align: center;
-      border-bottom: 1px solid rgba(131, 223, 255, 0.2);
+      border-bottom: 1px solid ${Variables.borderBottomColor};
       list-style-type: none;
     }
 
     .ul-list > .li-element:last-of-type {
       margin-bottom: 0;
-    }
-
-    .ul-list > .li-element:hover {
-      box-shadow: rgba(131, 223, 255, 0.15) 0px -50px 36px -28px inset;
     }
   `;
 

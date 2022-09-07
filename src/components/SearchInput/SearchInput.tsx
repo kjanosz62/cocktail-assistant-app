@@ -1,5 +1,6 @@
 import { html } from 'lit-html';
 import { component, useState } from 'haunted';
+import { Variables } from '../../enums/Variables.enum';
 
 export function SearchInput() {
   const [query, setQuery] = useState('');
@@ -60,13 +61,13 @@ export function SearchInput() {
       font-size: 1rem;
       border: none;
       outline: none;
-      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      box-shadow: ${Variables.btnBoxShadowColor} 0px 8px 24px;
       border: 1px solid transparent;
       border-radius: 4px;
     }
 
     input#search-bar:focus {
-      border: 1px solid #d3d3d3;
+      border: 1px solid ${Variables.searchBarFocusColor};
     }
     
     .search-icon {

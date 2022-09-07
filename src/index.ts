@@ -1,6 +1,6 @@
 import { html } from 'lit-html';
 import { component, useEffect, useState } from 'haunted';
-import { ToastStatus } from './enums/toastStatus.enum';
+import { ToastStatus } from './enums/ToastStatus.enum';
 
 import '../src/components/QueryResultsList/QueryResultsList';
 import '../src/components/SearchInput/SearchInput';

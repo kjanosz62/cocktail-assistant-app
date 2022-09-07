@@ -1,6 +1,7 @@
 import { html } from 'lit';
 import { component } from 'haunted';
-import CardData from "../../models/cardData.model";
+import CardData from "../../models/CardData.model";
+import { Variables } from '../../enums/Variables.enum';
 
 interface CardDataProps {
   cardData: CardData;
@@ -29,8 +30,8 @@ export function QueryResultCard({cardData}: CardDataProps) {
       width: 860px;
       min-height: 160px;
       height: 185px;
-      background: rgb(255, 255, 255);
-      box-shadow: rgb(0 29 86 / 5%) 0px 0px 20px;
+      background: ${Variables.white};
+      box-shadow: ${Variables.cardBoxShadowColor} 0px 0px 20px;
       border-radius: 10px;
     }
 
@@ -91,16 +92,16 @@ export function QueryResultCard({cardData}: CardDataProps) {
     .card > .card-content > .btn-content > .btn-add {
       width: 50px;
       height: 50px;
-      background-color: #edede9;
+      background-color: ${Variables.btnBgColor};
       border: none;
       border-radius: 8px;
-      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      box-shadow: ${Variables.btnBoxShadowColor} 0px 8px 24px;
       font-size: 32px;
     }
 
     .card > .card-content > .btn-content > .btn-add:hover {
       cursor: pointer;
-      color: #8e99a3;
+      color: ${Variables.btnTextHoverColor};
     }
   `;
 

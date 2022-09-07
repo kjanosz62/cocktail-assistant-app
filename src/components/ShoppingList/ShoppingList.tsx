@@ -1,5 +1,6 @@
 import { html } from 'lit-html';
 import { component } from 'haunted';
+import { Variables } from '../../enums/Variables.enum';
 
 interface ProductsProps {
   products: string[];
@@ -28,7 +29,7 @@ export function ShoppingList({products}) {
       padding: 20px;
       border: 1px solid transparent;
       border-radius: 8px;
-      box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+      box-shadow: ${Variables.shoppingListContainerShadowColor} 0px 5px 15px;
       background: #FFF;
     }
 
@@ -58,13 +59,13 @@ export function ShoppingList({products}) {
       min-width: 200px;
       width: 100%;
       text-align: center;
-      border-bottom: 1px solid rgba(131, 223, 255, 0.2);
+      border-bottom: 1px solid ${Variables.borderBottomColor};
       list-style-type: none;
       border: none;
       border-radius: 4px;
       background: #FFF;
       margin-bottom: 8px;
-      box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+      box-shadow: ${Variables.shoppingListElementBoxShadow}
     }
 
     .shopping-list > .empty-shopping-list {
@@ -96,10 +97,10 @@ export function ShoppingList({products}) {
     .shopping-list-container > .shopping-list-btn-print-box > .btn-print {
       width: 120px;
       height: 40px;
-      background-color: rgba(53, 53, 53, 0.1);
+      background-color: ${Variables.btnBgColor};
       border: none;
       border-radius: 4px;
-      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      box-shadow: ${Variables.btnBoxShadowColor} 0px 8px 24px;
       font-size: 16px;
       font-weight: 600;
       font-family: Nunito, sans-serif;
@@ -107,7 +108,7 @@ export function ShoppingList({products}) {
 
     .shopping-list-container > .shopping-list-btn-print-box > .btn-print:hover {
       cursor: pointer;
-      color: #8e99a3;
+      color: ${Variables.btnTextHoverColor};
     }
   `;
 
