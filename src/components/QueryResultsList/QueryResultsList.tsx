@@ -42,7 +42,7 @@ export function QueryResultsList({drinks}) {
     .ul-list > .empty-list {
       text-align: center;
       width: 280px;
-      padding: 10px 180px;
+      padding: 10px 100px;
       box-shadow: ${Variables.shoppingListContainerShadowColor} 0px 5px 15px;
       background: #FFF;
       border-radius: 8px;

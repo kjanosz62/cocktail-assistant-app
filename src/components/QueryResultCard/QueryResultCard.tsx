@@ -103,6 +103,16 @@ export function QueryResultCard({cardData}: CardDataProps) {
       cursor: pointer;
       color: ${Variables.btnTextHoverColor};
     }
+
+    @media (max-width: 1360px) {
+      .card {
+        width: 560px;
+      }
+
+      .card > .card-content {
+        padding-left: 25px;
+      }
+    }
   `;
 
   function createCard() {

@@ -118,7 +118,7 @@ export function App(element) {
       height: 100%;
       display: flex;
       flex-direction: column;
-      padding: 72px 0;
+      padding: 72px 10px;
       background: #FFEEEE;
       background: -webkit-linear-gradient(to right, #DDEFBB, #FFEEEE);
       background: linear-gradient(to right, #DDEFBB, #FFEEEE);
@@ -149,6 +149,12 @@ export function App(element) {
 
       .main-app-container .content .content-col:nth-of-type(2) * {
         display: flex;
+      }
+    }
+
+    @media (max-width: 1360px) {
+      .main-app-container .content .content-col:nth-of-type(2) {
+        width: 44%;
       }
     }
   `;
