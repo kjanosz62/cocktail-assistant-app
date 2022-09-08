@@ -1,4 +1,4 @@
-export enum ToastStatus {
+export enum ToastMsgStatus {
   Searching = "Searching...",
   Results = "Here are the results.",
   NoResults = "No results found.",

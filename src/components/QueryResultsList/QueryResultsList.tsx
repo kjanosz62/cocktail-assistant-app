@@ -3,9 +3,10 @@ import { component } from 'haunted';
 
 import '../QueryResultCard/QueryResultCard';
 import { Variables } from "../../enums/Variables.enum";
+import CardData from "../../models/CardData.model";
 
 interface DrinksProps {
-  drinks: any;
+  drinks: CardData;
 };
 
 const notFoundMsg = "No drinks found.";

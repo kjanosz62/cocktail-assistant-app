@@ -1,11 +1,11 @@
 import { html } from 'lit-html';
 import { classMap } from 'lit-html/directives/class-map.js';
 import { component } from 'haunted';
-import { ToastStatus } from '../../enums/ToastStatus.enum';
+import { ToastMsgStatus } from '../../enums/ToastMsgStatus.enum';
 import { Variables } from '../../enums/Variables.enum';
 
 interface ToasterProps {
-  status: ToastStatus;
+  status: ToastMsgStatus;
 };
 
 export function Toaster({status}) {

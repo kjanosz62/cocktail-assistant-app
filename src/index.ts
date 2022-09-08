@@ -1,6 +1,6 @@
 import { html } from 'lit-html';
 import { component, useEffect, useState } from 'haunted';
-import { ToastStatus } from './enums/ToastStatus.enum';
+import { ToastMsgStatus } from './enums/ToastMsgStatus.enum';
 
 import '../src/components/QueryResultsList/QueryResultsList';
 import '../src/components/SearchInput/SearchInput';
@@ -15,7 +15,7 @@ export function App(element) {
   
   let statusTimeout = null;
 
-  const handleStatusChange = (inputStatus: ToastStatus) => {
+  const handleStatusChange = (inputStatus: ToastMsgStatus) => {
     if (statusTimeout) {
       clearTimeout(statusTimeout);
     }
@@ -32,17 +32,17 @@ export function App(element) {
         `${apiUrlBase}${searchQuery}`
       )
       const parsedResponse = await response.json();
-      handleStatusChange(ToastStatus.Results);
+      handleStatusChange(ToastMsgStatus.Results);
       setDrinks(parsedResponse?.drinks);
     }
 
     const onSearchQuery = ({ detail: query }) => {
       if (query) {
-        handleStatusChange(ToastStatus.Searching);
+        handleStatusChange(ToastMsgStatus.Searching);
         fetchDrinks(query);
       } else {
         setDrinks([]);
-        handleStatusChange(ToastStatus.NoResults);
+        handleStatusChange(ToastMsgStatus.NoResults);
       }
     }
 
@@ -69,7 +69,7 @@ export function App(element) {
       });
 
       setProducts(uniqueProductsList);
-      handleStatusChange(ToastStatus.AddedSuccess);
+      handleStatusChange(ToastMsgStatus.AddedSuccess);
     }
 
     element.addEventListener('add-drink', onAddDrink);
@@ -81,7 +81,7 @@ export function App(element) {
     const onRemoveProduct = ({ detail: product }) => {
       if (product) {
         setProducts(products.filter(prod => prod !== product));
-        handleStatusChange(ToastStatus.RemovalSuccess);
+        handleStatusChange(ToastMsgStatus.RemovalSuccess);
       }
     }
 
