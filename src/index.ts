@@ -1,5 +1,5 @@
 import { html } from 'lit-html';
-import { component, useEffect, useState } from 'haunted';
+import { component, useEffect, useRef, useState } from 'haunted';
 import { ToastMsgStatus } from './enums/ToastMsgStatus.enum';
 
 import '../src/components/QueryResultsList/QueryResultsList';
@@ -12,6 +12,8 @@ export function App(element) {
   const [drinks, setDrinks] = useState([]);
   const [products, setProducts] = useState([]);
   const [status, setStatus] = useState('');
+  const [queryString, setQueryString] = useState('');
+  const queryStringRef = useRef(queryString);
   
   let statusTimeout = null;
 
@@ -32,24 +34,36 @@ export function App(element) {
         `${apiUrlBase}${searchQuery}`
       )
       const parsedResponse = await response.json();
-      handleStatusChange(ToastMsgStatus.Results);
       setDrinks(parsedResponse?.drinks);
-    }
 
-    const onSearchQuery = ({ detail: query }) => {
-      if (query) {
-        handleStatusChange(ToastMsgStatus.Searching);
-        fetchDrinks(query);
+      if (parsedResponse?.drinks?.length) {
+        handleStatusChange(ToastMsgStatus.Results);
       } else {
-        setDrinks([]);
         handleStatusChange(ToastMsgStatus.NoResults);
       }
+    }
+
+    if (queryString === queryStringRef.current) return;
+    queryStringRef.current = queryString;
+
+    if (queryString) {
+      handleStatusChange(ToastMsgStatus.Searching);
+      fetchDrinks(queryString);
+    } else {
+      setDrinks([]);
+      handleStatusChange(ToastMsgStatus.NoResults);
+    }
+  }, [queryString]);
+
+  useEffect(() => {
+    const onSearchQuery = ({ detail: query }) => {
+      setQueryString(query);
     }
 
     element.addEventListener('search-query', onSearchQuery);
 
     return () => element.removeEventListener('search-query', onSearchQuery);
-  });
+  }, []);
 
   useEffect(() => {
     const onAddDrink = ({ detail: drink }) => {
@@ -75,7 +89,7 @@ export function App(element) {
     element.addEventListener('add-drink', onAddDrink);
 
     return () => element.removeEventListener('add-drink', onAddDrink);
-  });
+  }, [products]);
 
   useEffect(() => {
     const onRemoveProduct = ({ detail: product }) => {
@@ -88,7 +102,7 @@ export function App(element) {
     element.addEventListener('remove-product', onRemoveProduct);
 
     return () => element.removeEventListener('remove-product', onRemoveProduct);
-  });
+  }, [products]);
 
   useEffect(() => {
     const onStatusChange = ({ detail: status }) => {
@@ -100,7 +114,7 @@ export function App(element) {
     element.addEventListener('status-change', onStatusChange);
 
     return () => element.removeEventListener('status-change', onStatusChange);
-  });
+  }, [drinks, products]);
 
   const styles = `
     .main-app-container,
